@@ -1,11 +1,12 @@
-﻿@model DevIO.App.ViewModels.FornecedorViewModel
+﻿@model DevIO.App.ViewModels.ProdutoViewModel
 
 @{
-    ViewData["Title"] = "Novo Fornecedor";
+    ViewData["Title"] = "Create";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>Create</h1>
 
+<h4>ProdutoViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,35 +18,36 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Documento" class="control-label"></label>
-                <input asp-for="Documento" class="form-control" />
-                <span asp-validation-for="Documento" class="text-danger"></span>
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TipoFornecedor" class="control-label"></label>
-                <input asp-for="TipoFornecedor" class="form-control" />
-                <span asp-validation-for="TipoFornecedor" class="text-danger"></span>
+                <label asp-for="Imagem" class="control-label"></label>
+                <input asp-for="Imagem" class="form-control" />
+                <span asp-validation-for="Imagem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valor" class="control-label"></label>
+                <input asp-for="Valor" class="form-control" />
+                <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
                 </label>
             </div>
-
-            <H4>Endereço</H4>
-            <hr />
-
-            <partial name="_Endereco" />
-            <br />
             <div class="form-group">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                 <a class="btn btn-info" asp-action="Index">Voltar</a>
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-  
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
