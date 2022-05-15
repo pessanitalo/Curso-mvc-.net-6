@@ -55,7 +55,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute("default", "{controller=Fornecedores}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

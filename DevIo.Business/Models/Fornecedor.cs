@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DevIO.Bussiness.Models
+﻿namespace DevIO.Bussiness.Models
 {
     public class Fornecedor : Entity
     {

@@ -79,7 +79,6 @@ namespace DevIO.App.Data
         public async Task<IActionResult> Edit(Guid id, ProdutoViewModel produtoViewModel)
         {
             if (id != produtoViewModel.Id) return NotFound();
-
             var produtoAtualizacao = await ObterProduto(id);
             produtoViewModel.Fornecedor = produtoAtualizacao.Fornecedor;
             produtoViewModel.Imagem = produtoAtualizacao.Imagem;
