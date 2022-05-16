@@ -37,9 +37,11 @@
         <input type="submit" value="Salvar" class="btn btn-primary" />
     </div>
 </form>
-<div>
+<div id="EnderecoTarget">
     <partial name="_DetalhesEndereco"></partial>
 </div>
+
+
 <h4>Produtos</h4>
 <div>
     <partial name="../Produtos/_ListaProdutos" model="@Model.Produtos"></partial>
@@ -58,8 +60,52 @@
 
     <script>
         $(document).ready(function () {
-            AjaxModal();
+            SetModal(); //ou AjaxModal
         });
+
+    function SetModal() {
+
+    $(document).ready(function () {
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $("a[data-modal]").on("click",
+                function (e) {
+                    $('#myModalContent').load(this.href,
+                        function () {
+                            $('#myModal').modal({
+                                keyboard: true
+                            },
+                                'show');
+                            bindForm(this);
+                        });
+                    return false;
+                });
+        });
+    });
+}
+
+function bindForm(dialog) {
+    $('form', dialog).submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    $('#myModal').modal('hide');
+                    $('#EnderecoTarget').load(result.url); // Carrega o resultado HTML para a div demarcada
+                } else {
+                    $('#myModalContent').html(result);
+                    bindForm(dialog);
+                }
+            }
+        });
+
+        SetModal();
+        return false;
+    });
+}
+
     </script>
 
 }
