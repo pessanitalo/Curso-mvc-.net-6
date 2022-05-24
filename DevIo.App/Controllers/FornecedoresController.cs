@@ -3,19 +3,21 @@ using DevIO.App.ViewModels;
 using DevIO.Bussiness.Interfaces;
 using AutoMapper;
 using DevIO.Bussiness.Models;
+using DevIO.Business.Interfaces;
 
 namespace DevIO.App.Controllers
 {
     public class FornecedoresController : BaseController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
-        private readonly IEnderecoRepository _enderecoRepository;
+        private readonly IFornecedorService _fornecedorService;
         private readonly IMapper _mapper;
 
-        public FornecedoresController(IFornecedorRepository fornecedorRepository, IMapper mapper, IEnderecoRepository enderecoRepository)
+        public FornecedoresController(IFornecedorRepository fornecedorRepository,
+                    IFornecedorService fornecedorService, IMapper mapper, INotificador notificador) : base(notificador)
         {
             _fornecedorRepository = fornecedorRepository;
-            _enderecoRepository = enderecoRepository;
+            _fornecedorService = fornecedorService;
             _mapper = mapper;
         }
 
@@ -36,7 +38,6 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
-
         public IActionResult Create()
         {
             return View();
@@ -50,7 +51,9 @@ namespace DevIO.App.Controllers
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
-            await _fornecedorRepository.Adicionar(fornecedor);
+            await _fornecedorService.Adicionar(fornecedor);
+
+            if (!OperacaoValida()) return View(fornecedorViewModel);
 
             return RedirectToAction("Index");
         }
@@ -75,10 +78,9 @@ namespace DevIO.App.Controllers
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
-            await _fornecedorRepository.Atualizar(fornecedor);
+            await _fornecedorService.Atualizar(fornecedor);
 
-            return View("Index");
-
+            return RedirectToAction("Index");
         }
 
 
@@ -99,11 +101,11 @@ namespace DevIO.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var fornecedorViewModel = await ObterFornecedorEndereco(id);
+            var fornecedor = await ObterFornecedorEndereco(id);
 
-            if (fornecedorViewModel == null) return NotFound();
+            if (fornecedor == null) return NotFound();
 
-            await _fornecedorRepository.Remover(id);
+            await _fornecedorService.Remover(id);
 
             return RedirectToAction("Index");
         }
@@ -112,7 +114,7 @@ namespace DevIO.App.Controllers
         {
             var fornecedor = await ObterFornecedorEndereco(id);
 
-            if(fornecedor == null)
+            if (fornecedor == null)
             {
                 return NotFound();
             }
@@ -120,13 +122,11 @@ namespace DevIO.App.Controllers
             return PartialView("_DetalhesEndereco", fornecedor);
         }
 
-
-
         //metodo que retorna PartialView 'Modal'
-        public async Task<IActionResult>AtualizarEndereco(Guid id)
+        public async Task<IActionResult> AtualizarEndereco(Guid id)
         {
             var fornecedor = await ObterFornecedorEndereco(id);
-            if(fornecedor == null)
+            if (fornecedor == null)
             {
                 return NotFound();
             }
@@ -141,7 +141,7 @@ namespace DevIO.App.Controllers
             ModelState.Remove("Documento");
 
             if (!ModelState.IsValid) return PartialView("_AtualizarEndereco", model);
-            await _enderecoRepository.Atualizar(_mapper.Map<Endereco>(model.Endereco));
+            await _fornecedorService.AtualizarEndereco(_mapper.Map<Endereco>(model.Endereco));
             var url = Url.Action("ObterEndereco", "Fornecedores", new { id = model.Endereco.FornecedorId });
             return Json(new { success = true, url });
         }

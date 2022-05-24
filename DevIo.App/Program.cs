@@ -1,4 +1,7 @@
 using DevIo.App.Data;
+using DevIO.Business.Interfaces;
+using DevIO.Business.Notificacoes;
+using DevIO.Business.Services;
 using DevIO.Bussiness.Interfaces;
 using DevIO.Data.Context;
 using DevIO.Data.Repository;
@@ -24,6 +27,10 @@ builder.Services.AddScoped<MeuDbContext>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<IFornecedorRepository, FornecedorRepository>();
 builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+
+builder.Services.AddScoped<INotificador, Notificador>();
+builder.Services.AddScoped<IFornecedorService, FornecedorService>();
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
