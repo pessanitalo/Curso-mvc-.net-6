@@ -31,21 +31,14 @@ DevIO.App/wwwroot/lib/jquery/dist/jquery.js
 DevIO.App/wwwroot/lib/jquery/dist/jquery.min.js
 DevIO.App/wwwroot/lib/jquery/dist/jquery.min.map
 DevIO.App/wwwroot/lib/jquery/LICENSE.txt
-DevIO.Bussiness/bin/Debug/net5.0/DevIO.Bussiness.dll
 DevIO.Bussiness/bin/Debug/net5.0/DevIO.Bussiness.pdb
-DevIO.Bussiness/bin/Debug/net5.0/ref/DevIO.Bussiness.dll
 DevIO.Bussiness/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
 DevIO.Bussiness/obj/Debug/net5.0/DevIO.Bussiness.AssemblyInfo.cs
 DevIO.Bussiness/obj/Debug/net5.0/DevIO.Bussiness.csproj.FileListAbsolute.txt
-DevIO.Bussiness/obj/Debug/net5.0/DevIO.Bussiness.dll
 DevIO.Bussiness/obj/Debug/net5.0/DevIO.Bussiness.GeneratedMSBuildEditorConfig.editorconfig
 DevIO.Bussiness/obj/Debug/net5.0/DevIO.Bussiness.pdb
-DevIO.Bussiness/obj/Debug/net5.0/ref/DevIO.Bussiness.dll
-DevIO.Data/bin/Debug/net5.0/DevIO.Bussiness.dll
 DevIO.Data/bin/Debug/net5.0/DevIO.Bussiness.pdb
-DevIO.Data/bin/Debug/net5.0/DevIO.Data.dll
 DevIO.Data/bin/Debug/net5.0/DevIO.Data.pdb
-DevIO.Data/bin/Debug/net5.0/ref/DevIO.Data.dll
 DevIO.Data/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
 DevIO.Data/obj/Debug/net5.0/DevIO.Data.AssemblyInfo.cs
 DevIO.Data/obj/Debug/net5.0/DevIO.Data.csproj.CopyComplete
@@ -61,10 +54,8 @@ DevIO.App/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map
 DevIO.App/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css
 .vs/Minha App/DesignTimeBuild/.dtbcache.v2
 .vs/Minha App/v16/.suo
-DevIO.App/bin/Debug/net5.0/DevIO.App.dll
 DevIO.App/bin/Debug/net5.0/DevIO.App.exe
 DevIO.App/bin/Debug/net5.0/DevIO.App.pdb
-DevIO.App/bin/Debug/net5.0/DevIO.App.Views.dll
 DevIO.App/bin/Debug/net5.0/DevIO.App.Views.pdb
 DevIO.App/bin/Debug/net5.0/DevIO.Bussiness.dll
 DevIO.App/bin/Debug/net5.0/DevIO.Bussiness.pdb
