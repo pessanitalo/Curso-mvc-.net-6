@@ -3,6 +3,7 @@ DevIO.App/obj/project.assets.json
 *.cache
 *.targets
 *.props
+DevIO.Data/obj/Debug/net5.0/ref/DevIO.Data.dll
 DevIO.Data/obj/Debug/net5.0/DevIO.Data.pdb
 DevIO.Data/obj/Debug/net5.0/DevIO.Data.GeneratedMSBuildEditorConfig.editorconfig
 DevIO.App/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map
