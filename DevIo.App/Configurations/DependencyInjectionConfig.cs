@@ -1,4 +1,7 @@
-﻿using DevIO.Bussiness.Interfaces;
+﻿using DevIO.Business.Interfaces;
+using DevIO.Business.Notificacoes;
+using DevIO.Business.Services;
+using DevIO.Bussiness.Interfaces;
 using DevIO.Data.Context;
 using DevIO.Data.Repository;
 
@@ -12,6 +15,11 @@ namespace DevIO.App.Configurations
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+            
+
+            services.AddScoped<INotificador, Notificador>();
+            services.AddScoped<IFornecedorService, FornecedorService>();
+            services.AddScoped<IProdutoService, ProdutoService>();
 
             return services;
         }

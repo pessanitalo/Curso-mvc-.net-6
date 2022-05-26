@@ -5,9 +5,12 @@ using DevIO.Bussiness.Interfaces;
 using DevIO.App.Controllers;
 using DevIO.Bussiness.Models;
 using DevIO.Business.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using DevIO.App.Extensions;
 
 namespace DevIO.App.Data
 {
+    [Authorize]
     public class ProdutosController : BaseController
     {
         private readonly IProdutoRepository _produtoRepository;
@@ -24,11 +27,12 @@ namespace DevIO.App.Data
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterProdutosPorFornecedores()));
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Details(Guid id)
         {
             var produtoViewModel = await ObterProduto(id);
@@ -40,7 +44,7 @@ namespace DevIO.App.Data
             return View(produtoViewModel);
         }
 
-
+        [ClaimsAuthorize("Produto","Adicionar")]
         public async Task<IActionResult> Create()
         {
             var produtoViewModel = await PopularFornecedore(new ProdutoViewModel());
@@ -66,6 +70,7 @@ namespace DevIO.App.Data
             return RedirectToAction("Index");
         }
 
+        [ClaimsAuthorize("Produto", "Editar")]
         public async Task<IActionResult> Edit(Guid id)
         {
 
@@ -109,7 +114,7 @@ namespace DevIO.App.Data
             return RedirectToAction("Index");
         }
 
-
+        [ClaimsAuthorize("Produto", "Excluir")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var produto = await ObterProduto(id);
