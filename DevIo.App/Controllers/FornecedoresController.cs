@@ -4,9 +4,12 @@ using DevIO.Bussiness.Interfaces;
 using AutoMapper;
 using DevIO.Bussiness.Models;
 using DevIO.Business.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using DevIO.App.Extensions;
 
 namespace DevIO.App.Controllers
 {
+    [Authorize]
     public class FornecedoresController : BaseController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
@@ -21,6 +24,7 @@ namespace DevIO.App.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos()));
@@ -43,7 +47,7 @@ namespace DevIO.App.Controllers
             return View();
         }
 
-
+        [ClaimsAuthorize("Fornecedor", "Adicionar")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(FornecedorViewModel fornecedorViewModel)
@@ -58,7 +62,7 @@ namespace DevIO.App.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [ClaimsAuthorize("Fornecedor", "Editar")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var fornecedorViewModel = await ObterProdutosEndereco(id);
@@ -83,7 +87,7 @@ namespace DevIO.App.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [ClaimsAuthorize("Fornecedor", "Excluir")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var fornecedorViewModel = await ObterFornecedorEndereco(id);

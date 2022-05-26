@@ -10,9 +10,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-           
-            
-             <vc:Summary></vc:Summary>
+            <vc:Summary></vc:Summary>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
@@ -44,83 +42,85 @@
             <br />
             <div class="form-group">
                 <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                 <a class="btn btn-info" asp-action="Index">Voltar</a>
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>
 </div>
 
-  
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 
-    <script>
-     $(document).ready(function () {
-         BuscaCep(); 
-     });
-    
-    function BuscaCep() {
-    $(document).ready(function () {
+<script>
+         $(document).ready(function () {
+             BuscaCep();
+         });
 
-        function limpa_formulário_cep() {
-            // Limpa valores do formulário de cep.
-            $("#Endereco_Logradouro").val("");
-            $("#Endereco_Bairro").val("");
-            $("#Endereco_Cidade").val("");
-            $("#Endereco_Estado").val("");
-        }
+        function BuscaCep() {
+        $(document).ready(function () {
 
-        //Quando o campo cep perde o foco.
-        $("#Endereco_Cep").blur(function () {
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#Endereco_Logradouro").val("");
+                $("#Endereco_Bairro").val("");
+                $("#Endereco_Cidade").val("");
+                $("#Endereco_Estado").val("");
+            }
 
-            //Nova variável "cep" somente com dígitos.
-            var cep = $(this).val().replace(/\D/g, '');
+            //Quando o campo cep perde o foco.
+            $("#Endereco_Cep").blur(function () {
 
-            //Verifica se campo cep possui valor informado.
-            if (cep != "") {
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
 
-                //Expressão regular para validar o CEP.
-                var validacep = /^[0-9]{8}$/;
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
 
-                //Valida o formato do CEP.
-                if (validacep.test(cep)) {
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
 
-                    //Preenche os campos com "..." enquanto consulta webservice.
-                    $("#Endereco_Logradouro").val("...");
-                    $("#Endereco_Bairro").val("...");
-                    $("#Endereco_Cidade").val("...");
-                    $("#Endereco_Estado").val("...");
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
 
-                    //Consulta o webservice viacep.com.br/
-                    $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
-                        function (dados) {
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#Endereco_Logradouro").val("...");
+                        $("#Endereco_Bairro").val("...");
+                        $("#Endereco_Cidade").val("...");
+                        $("#Endereco_Estado").val("...");
 
-                            if (!("erro" in dados)) {
-                                //Atualiza os campos com os valores da consulta.
-                                $("#Endereco_Logradouro").val(dados.logradouro);
-                                $("#Endereco_Bairro").val(dados.bairro);
-                                $("#Endereco_Cidade").val(dados.localidade);
-                                $("#Endereco_Estado").val(dados.uf);
-                            } //end if.
-                            else {
-                                //CEP pesquisado não foi encontrado.
-                                limpa_formulário_cep();
-                                alert("CEP não encontrado.");
-                            }
-                        });
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+                            function (dados) {
+
+                                if (!("erro" in dados)) {
+                                    //Atualiza os campos com os valores da consulta.
+                                    $("#Endereco_Logradouro").val(dados.logradouro);
+                                    $("#Endereco_Bairro").val(dados.bairro);
+                                    $("#Endereco_Cidade").val(dados.localidade);
+                                    $("#Endereco_Estado").val(dados.uf);
+                                } //end if.
+                                else {
+                                    //CEP pesquisado não foi encontrado.
+                                    limpa_formulário_cep();
+                                    alert("CEP não encontrado.");
+                                }
+                            });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
                 } //end if.
                 else {
-                    //cep é inválido.
+                    //cep sem valor, limpa formulário.
                     limpa_formulário_cep();
-                    alert("Formato de CEP inválido.");
                 }
-            } //end if.
-            else {
-                //cep sem valor, limpa formulário.
-                limpa_formulário_cep();
-            }
+            });
         });
-    });
-}
-    </script>
+    }
+</script>
 }
