@@ -37,13 +37,13 @@ DevIO.Bussiness/obj/Debug/net5.0/DevIO.Bussiness.AssemblyInfo.cs
 DevIO.Bussiness/obj/Debug/net5.0/DevIO.Bussiness.csproj.FileListAbsolute.txt
 DevIO.Bussiness/obj/Debug/net5.0/DevIO.Bussiness.GeneratedMSBuildEditorConfig.editorconfig
 DevIO.Bussiness/obj/Debug/net5.0/DevIO.Bussiness.pdb
-DevIO.Bussiness/obj/Debug/net5.0/ref/DevIO.Bussiness.dll
 DevIO.Data/bin/Debug/net5.0/DevIO.Bussiness.pdb
 DevIO.Data/bin/Debug/net5.0/DevIO.Data.pdb
 DevIO.Data/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
 DevIO.Data/obj/Debug/net5.0/DevIO.Data.AssemblyInfo.cs
 DevIO.Data/obj/Debug/net5.0/DevIO.Data.csproj.CopyComplete
 DevIO.Data/obj/Debug/net5.0/DevIO.Data.csproj.FileListAbsolute.txt
+DevIO.Data/obj/Debug/net5.0/DevIO.Data.dll
 DevIO.App/wwwroot/js/site.js
 DevIO.App/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css
 DevIO.App/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map
@@ -56,7 +56,6 @@ DevIO.App/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css
 .vs/Minha App/v16/.suo
 DevIO.App/bin/Debug/net5.0/DevIO.App.exe
 DevIO.App/bin/Debug/net5.0/DevIO.App.pdb
-DevIO.App/bin/Debug/net5.0/DevIO.App.Views.dll
 DevIO.App/bin/Debug/net5.0/DevIO.App.Views.pdb
 DevIO.App/bin/Debug/net5.0/DevIO.Bussiness.dll
 DevIO.App/bin/Debug/net5.0/DevIO.Bussiness.pdb
@@ -127,3 +126,4 @@ DevIO.Data/obj/Debug/net6.0/DevIO.Data.csproj.CopyComplete
 DevIO.Data/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
 DevIO.Data/obj/Debug/net6.0/DevIO.Data.AssemblyInfo.cs
 DevIO.Data/obj/Debug/net6.0/DevIO.Data.csproj.BuildWithSkipAnalyzers
+*.jpg
