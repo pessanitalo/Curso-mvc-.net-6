@@ -102,6 +102,7 @@ namespace DevIO.App.Controllers
 
 
         [HttpPost, ActionName("Delete")]
+        [ClaimsAuthorize("Fornecedor", "Excluir")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
