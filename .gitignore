@@ -104,6 +104,7 @@ DevIo.App/obj/Debug/net6.0/scopedcss/bundle/DevIO.App.styles.css
 *.exe
 *.pdb
 *.json
+*obj
 DevIo.App/obj/Debug/net6.0/DevIO.App.RazorAssemblyInfo.cs
 DevIo.App/obj/Debug/net6.0/DevIO.App.MvcApplicationPartsAssemblyInfo.cs
 DevIo.App/obj/Debug/net6.0/DevIo.App.GlobalUsings.g.cs
